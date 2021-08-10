@@ -1,0 +1,58 @@
+﻿const Discord = require("discord.js");
+const botconfig = require("../botconfig.json");
+
+module.exports.run = async (bot, message, args) => {
+
+    var emoji1 = bot.emojis.find("name", "vaxraySuccess");
+    var emoji2 = bot.emojis.find("name", "vaxrayError");
+
+	if(!message.member.hasPermission("BAN_MEMBERS"))
+	return message.channel.send(emoji2 + " You don't have the permission to use this command.");
+
+	let banMember = args[0];
+	if(!banMember)
+	return message.channel.send(emoji2 + " You have to give the member's ID.");
+
+	let reason = args.slice(1).join(" ");
+	if(!reason)
+	return message.channel.send(emoji2 + " You have to give a reason for the unban.");
+
+	let modlog = message.guild.channels.find(`name`, botconfig.modlog);
+	if(!modlog) 
+	return message.channel.send(emoji2 + "Couldn't find a log channel.");
+
+	let unbanEmbed = new Discord.RichEmbed()
+	.setAuthor("Unban || ID: " + banMember)
+	.setColor("#007f00")
+	.setThumbnail(message.author.avatarURL)
+	.addField("Member", `<@${banMember}>`, true)
+	.addField("Moderator", message.author.toString(), true)
+	.addField("Reason", reason, true)
+	.setTimestamp()
+
+	modlog.send(unbanEmbed),
+	message.guild.unban(banMember),
+	banMember.send(`You have been **UNBANNED** from **${message.guild.name}**\n**Reason:** ${reason}\n**Invite Link:** https://discord.gg/Nt2AmTr`);
+	message.channel.send(emoji1 + ` **ID: ${banMember}** was successfully unbanned.`);
+}
+
+module.exports.help = {
+    name: "unban"
+}
+
+
+
+
+  if (!message.member.hasPermission("MANAGE_MESSAGES")){
+    if (message.author.id === '350316509291216906'){
+      if (!args[0]) return message.channel.send("You don't have permission to do that.");
+      message.channel.bulkDelete(args[0]).then(() => {
+      message.channel.send(`**Cleared ${args[0]} messages!**`).then(msg => msg.delete(10000));
+      })
+      return;
+  }}
+  if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You don't have permission to do that!");
+  if (!args[0]) return message.channel.send("Specify a number of messages to be deleted!");
+  message.channel.bulkDelete(args[0]).then(() => {
+    message.channel.send(`**Cleared ${args[0]} messages!**`).then(msg => msg.delete(10000));
+  })

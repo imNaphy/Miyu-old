@@ -1,0 +1,26 @@
+const Discord = require("discord.js");
+
+module.exports.run = async (bot, message, args) => {
+  
+}
+
+module.exports.help = {
+  name: ""
+}
+
+
+
+let embed = new Discord.RichEmbed()
+.setAuthor(message.author.username, message.member.user.displayAvatarURL)
+.setColor("#363940")
+.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL);
+
+
+
+let embed = new Discord.RichEmbed()
+.setAuthor(message.author.username, message.member.user.displayAvatarURL)
+.setColor("#363940")
+.setDescription("**You don't have permission to do that!**")
+.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL);
+
+\n pentru o noua linie

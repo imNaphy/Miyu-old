@@ -1,0 +1,16 @@
+const Discord = require('discord.js');
+
+module.exports = {
+    name: 'nume',
+    aliases: ['alias1', 'alias2'],
+    run: async (bot, message, args) => {
+        if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
+        
+    }
+};
+
+const embed = new Discord.MessageEmbed()
+.setAuthor('comanda', bot.user.displayAvatarURL())
+.setColor('#363940')
+.setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL());
+message.channel.send(embed);

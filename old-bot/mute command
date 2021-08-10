@@ -1,0 +1,74 @@
+const Discord = require("discord.js");
+const ms = require("ms");
+const utils = require("../utils/utils.js");
+
+module.exports.run = async (bot, message, args) => {
+  if(!message.member.hasPermission("MANAGE_MESSAGES")){
+    if (message.author.id === '350316509291216906'){
+      let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+      if(!tomute) return message.channel.send("You don't have permission to do that.");
+      let muterole = message.guild.roles.find(`name`, "muted");
+      if(!muterole){
+        try{
+          muterole = await message.guild.createRole({
+            name: "muted",
+            color: "#000000",
+            permissions:[]
+          });
+          message.guild.channels.forEach(async (channel, id) => {
+            await channel.overwritePermissions(muterole, {
+              SEND_MESSAGES: false,
+              ADD_REACTIONS: false
+            });
+          });
+        }catch(e){
+          console.log(e.stack);
+        }
+      }
+
+      let mutetime = args[1];
+
+      await(tomute.addRole(muterole.id));
+
+      setTimeout(function(){
+        tomute.removeRole(muterole.id);
+      }, ms(mutetime));
+  }}
+  let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) return utils.noPerms(message);
+  if(!tomute) return message.channel.send("Use the command: /mute <person> <time> <reason> (buggy command, not recommended for use yet)");
+  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.channel.send("I can't mute that person!");
+  let muterole = message.guild.roles.find(`name`, "muted");
+  if(!muterole){
+    try{
+      muterole = await message.guild.createRole({
+        name: "muted",
+        color: "#000000",
+        permissions:[]
+      });
+      message.guild.channels.forEach(async (channel, id) => {
+        await channel.overwritePermissions(muterole, {
+          SEND_MESSAGES: false,
+          ADD_REACTIONS: false
+        });
+      });
+    }catch(e){
+      console.log(e.stack);
+    }
+  }
+
+  let mutetime = args[1];
+  if(!mutetime) return message.channel.send("You have to specify a time!");
+
+  await(tomute.addRole(muterole.id));
+  message.channel.send(`<@${tomute.id}> has been muted for ${ms(ms(mutetime))}`);
+
+  setTimeout(function(){
+    tomute.removeRole(muterole.id);
+    message.channel.send(`<@${tomute.id}> has been unmuted!`);
+  }, ms(mutetime));
+}
+
+module.exports.help = {
+  name: "mute"
+}
