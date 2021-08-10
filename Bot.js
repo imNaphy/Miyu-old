@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const fs = require('fs');
 
-const bot = new Discord.Client();
+const bot = new Discord.Client({ allowedMentions: { parse: ['users', 'roles'], repliedUser: true } });
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 
