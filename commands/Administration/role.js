@@ -4,7 +4,7 @@ module.exports = {
     name: 'role',
     run: async (bot, message, args) => {
         if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
-        if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send('ERROR: No permission!');
+        if (!message.member.permissions.has('MANAGE_ROLES')) return message.channel.send('ERROR: No permission!');
         if (!message.guild.me.permissions.has('MANAGE_ROLES')) return message.channel.send('ERROR: I don\'t have permission!');
         const member = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
         if (!member) return message.channel.send('ERROR: No member found!');

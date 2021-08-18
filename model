@@ -13,4 +13,4 @@ const embed = new Discord.MessageEmbed()
 .setAuthor('comanda', bot.user.displayAvatarURL())
 .setColor('#363940')
 .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL());
-message.channel.send(embed);
+message.channel.send({embeds: [embed]});

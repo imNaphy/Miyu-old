@@ -43,7 +43,7 @@ bot.on('message',  async message => {
         try {
             command.run(bot, message, args);
         } catch (error) {
-            return;
+            return console.log(error);
         }
     }
 });
