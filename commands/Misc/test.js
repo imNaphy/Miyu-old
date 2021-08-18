@@ -16,7 +16,10 @@ module.exports = {
         .addField('Field2', 'text2 din field, ambele inline = pe aceeasi linie', true)
         .setURL('https://naphy.cf')
         .setFooter(`si footer avem, cum sa n-avem ${message.author.tag}`, message.author.displayAvatarURL());
-        return message.channel.send(embed);
+        message.channel.send({embeds: [embed]});
+        await message.guild.fetchOwner().then(guildMember => owner = guildMember);
+        if (owner.nickname === null) message.channel.send('test1');
+        else message.channel.send('test2');
         //for (let i = 1; i <= 100; ++i) message.channel.send('test');
     }
 };

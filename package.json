@@ -1,5 +1,5 @@
 {
-  "name": "Miyu",
+  "name": "miyu",
   "version": "1.0.0",
   "description": "",
   "main": "Bot.js",
@@ -14,6 +14,7 @@
     "discord.js": "^13.1.0",
     "ffmpeg-static": "^4.4.0",
     "moment": "^2.29.1",
+    "parse-ms": "^3.0.0",
     "superagent": "^6.1.0",
     "ytdl-core": "^4.8.3"
   }

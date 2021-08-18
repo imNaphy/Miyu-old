@@ -16,7 +16,7 @@ module.exports = {
             .setColor("#363940")
             .addField('📥 Input', `\`\`\`js\n${codein}\`\`\``)
             .addField('📤 Output', `\`\`\`js\n${code}\n\`\`\``);
-            message.channel.send(embed)
+            await message.channel.send({embeds: [embed]})
         } catch(error) {
             message.channel.send(`\`\`\`js\n${error}\n\`\`\``);
         }

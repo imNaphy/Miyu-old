@@ -11,7 +11,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
         .setAuthor('🐶 Woof')
         .setColor('#363940')
-        .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
+        .setFooter(`Requested by ${message.author.tag}\nPowered by random.dog`, message.author.displayAvatarURL())
         .setImage(body.url);
         message.channel.send({embeds: [embed]});
     }

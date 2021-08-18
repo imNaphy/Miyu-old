@@ -22,11 +22,6 @@ bot.once('ready', () => {
     bot.user.setActivity('over my lovely users <3 | /help', { type: 'WATCHING' });
 });
 
-/*bot.on('message', async message => {
-    var msg = message.content.toLowerCase();
-    if (msg.includes('milsugi')) return message.channel.send('ma-ta il suge!');
-});*/
-
 bot.on('message',  async message => {
     const prefix = '/';
     if (!message.content.startsWith(prefix) || message.author.bot) return;

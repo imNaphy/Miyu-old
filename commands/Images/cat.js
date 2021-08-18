@@ -8,12 +8,14 @@ module.exports = {
         if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
         
         try {
-            const {body} = await superagent.get(`https://aws.random.cat/meow`);
+            //let {body} = await superagent.get(`https://aws.random.cat/meow`);
+            let {body} = await superagent.get(`http://random.cat`);
+            console.log(body);
             if (body.file) {
                 const embed = new Discord.MessageEmbed()
                 .setAuthor('🐱 Meow')
                 .setColor('#363940')
-                .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
+                .setFooter(`Requested by ${message.author.tag}\nPowered by random.cat`, message.author.displayAvatarURL())
                 .setImage(body.file);
                 await message.channel.send({embeds: [embed]});
             }
