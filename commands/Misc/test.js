@@ -17,9 +17,9 @@ module.exports = {
         .setURL('https://naphy.cf')
         .setFooter(`si footer avem, cum sa n-avem ${message.author.tag}`, message.author.displayAvatarURL());
         message.channel.send({embeds: [embed]});
-        await message.guild.fetchOwner().then(guildMember => owner = guildMember);
-        if (owner.nickname === null) message.channel.send('test1');
-        else message.channel.send('test2');
+        //await message.guild.fetchOwner().then(guildMember => owner = guildMember);
+        //if (owner.nickname === null) message.channel.send('test1');
+        //else message.channel.send('test2');
         //for (let i = 1; i <= 100; ++i) message.channel.send('test');
     }
 };
