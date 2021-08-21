@@ -9,7 +9,7 @@ module.exports = {
         .setAuthor('Embed mare manca-l-ar mama are si URL textul asta', bot.user.displayAvatarURL(), 'https://naphy.cf')
         .setTitle('are si titlu embed-ul asta, URL-ul e de la .setURL')
         .setDescription('are si descriere')
-        .setColor('#363940')
+        .setColor('#2F3136')
         .setImage('https://naphy.cf/domnulchef.png')
         .setThumbnail('https://cdn.discordapp.com/avatars/756085215650119710/0e446c930445303766e6748006eed4e5.webp?size=2048') //poza de la bot, miyu
         .addField('Field', 'text1 din field', true)

@@ -13,7 +13,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
         .setAuthor('Uptime', bot.user.displayAvatarURL())
-        .setColor('#363940')
+        .setColor('#2F3136')
         .addField('› Uptime', `${days} days, ${hours} hours, ${minutes} minutes and ${seconds} seconds.`)
         .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL());
         return message.channel.send(embed);

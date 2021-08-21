@@ -11,7 +11,7 @@ module.exports = {
         else ownerNick = owner.nickname;
         const serverembed = new Discord.MessageEmbed()
         .setAuthor(message.guild.name, message.guild.iconURL())
-        .setColor('#363940')
+        .setColor('#2F3136')
         .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL())
         .setThumbnail(message.guild.iconURL())
         .addField('› Owner', ownerNick.toString(), true)

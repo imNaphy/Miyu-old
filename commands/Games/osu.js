@@ -36,8 +36,8 @@ module.exports = {
                     const embed = new Discord.MessageEmbed()
                     .setAuthor(`osu! Standard Profile for ${u.name}`, `http://s.ppy.sh/a/${u.id}`)
                     .setThumbnail(`http://s.ppy.sh/a/${u.id}`)
-                    .setColor('#363940')
-                    .setDescription(`**› Bancho Rank:** ${rank} (${u.country}${rankCountry})\n**› Level:** ${level}\n**› PP:** ${u.pp.raw} **› Acc:** ${accuracy}\n**› Playcount:** ${u.counts.plays} (${time} hrs)`)
+                    .setColor('#2F3136')
+                    .setDescription(`**› Bancho Rank:** ${rank} (${u.country}${rankCountry})\n**› Level:** ${level}\n**› PP:** ${u.pp.raw} **› Acc:** ${accuracy}\n**› Playcount:** ${u.counts.plays} (${time} hrs)\n**› Ranks:** <:SSH:878549683931324456>\`${u.counts.SSH}\`<:SS:878549683746775061>\`${u.counts.SS}\`<:SH:878549683679678474>\`${u.counts.SH}\`<:S_:878549683671269376>\`${u.counts.S}\`<:A_:878549683759382560>\`${u.counts.A}\``)
                     .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL());
                     message.channel.send({embeds: [embed]});
                 });

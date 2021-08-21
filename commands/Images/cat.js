@@ -14,7 +14,7 @@ module.exports = {
             if (body.file) {
                 const embed = new Discord.MessageEmbed()
                 .setAuthor('🐱 Meow')
-                .setColor('#363940')
+                .setColor('#2F3136')
                 .setFooter(`Requested by ${message.author.tag}\nPowered by random.cat`, message.author.displayAvatarURL())
                 .setImage(body.file);
                 await message.channel.send({embeds: [embed]});

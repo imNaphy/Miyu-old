@@ -13,7 +13,7 @@ module.exports = {
                 code = require('util').inspect(code, { depth: 0 });
             const embed = new Discord.MessageEmbed()
             .setAuthor('Evaluate')
-            .setColor("#363940")
+            .setColor("#2F3136")
             .addField('📥 Input', `\`\`\`js\n${codein}\`\`\``)
             .addField('📤 Output', `\`\`\`js\n${code}\n\`\`\``);
             await message.channel.send({embeds: [embed]})

@@ -10,7 +10,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
         .setAuthor('Poll', bot.user.displayAvatarURL())
-        .setColor('#363940')
+        .setColor('#2F3136')
         .setTitle(poll)
         .setDescription('Please react to the message.')
         .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL());

@@ -11,6 +11,6 @@ module.exports = {
 
 const embed = new Discord.MessageEmbed()
 .setAuthor('comanda', bot.user.displayAvatarURL())
-.setColor('#363940')
+.setColor('#2F3136')
 .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL());
 message.channel.send({embeds: [embed]});

@@ -7,7 +7,7 @@ module.exports = {
         if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
         const embed = new Discord.MessageEmbed()
         .setAuthor('Upvote', bot.user.displayAvatarURL())
-        .setColor('#363940')
+        .setColor('#2F3136')
         .setDescription('**If you like me and want to help me, you can do so by upvoting me on the following links:**')
         .addField('› Discord Bots', 'https://discordbots.org')
         .addField('› Bots on Discord', 'https://bots.ondiscord.xyz')

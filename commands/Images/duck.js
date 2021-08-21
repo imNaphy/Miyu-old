@@ -10,7 +10,7 @@ module.exports = {
 
         const embed = new Discord.MessageEmbed()
         .setAuthor('🦆 Quack')
-        .setColor('#363940')
+        .setColor('#2F3136')
         .setFooter(`Requested by ${message.author.tag}\nPowered by random-d.uk`, message.author.displayAvatarURL())
         .setImage(body.url);
         message.channel.send({embeds: [embed]});

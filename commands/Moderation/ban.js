@@ -13,7 +13,7 @@ module.exports = {
 
         let banEmbed = new Discord.MessageEmbed()
         .setAuthor('Ban', bot.user.displayAvatarURL())
-        .setColor('#363940')
+        .setColor('#2F3136')
         .addField('› User', `${bUser}`, true)
         .addField('› Moderator', `<@${message.author.id}>`, true)
         .addField('› Reason', bReason, false)

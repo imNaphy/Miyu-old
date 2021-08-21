@@ -13,7 +13,7 @@ module.exports = {
 
         let kickEmbed = new Discord.MessageEmbed()
         .setAuthor('Kick', bot.user.displayAvatarURL())
-        .setColor('#363940')
+        .setColor('#2F3136')
         .addField('› User', `${kUser}`, true)
         .addField('› Moderator', `<@${message.author.id}>`, true)
         .addField('› Reason', kReason, false)
