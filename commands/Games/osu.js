@@ -38,7 +38,10 @@ module.exports = {
                 let totalScore = u.scores.total;
                 totalScore = totalScore.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 //Level
-                const level = u.level.slice(0, -4) + ` + ${u.level.slice(-3, -1)}%`;
+                let level;
+                if (u.level >= 100) level = u.level.slice(0, 3) + ` + ${u.level.slice(4, 6)}%`;
+                if (u.level < 10) level = u.level.slice(0, 1) + ` + ${u.level.slice(2, 4)}%`;
+                if (u.level >= 10 && u.level < 100) level = u.level.slice(0, 2) + ` + ${u.level.slice(3, 5)}%`;
                 //Accuracy
                 let accuracy;
                 if (u.accuracy === '100') accuracy = '100.00%';
@@ -50,13 +53,11 @@ module.exports = {
                 let playCount = u.counts.plays;
                 playCount = playCount.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-                //Pune steagul utilizatorului in loc de author photo.
-
                 const embed = new Discord.MessageEmbed()
-                .setAuthor(`osu! Standard Profile for ${u.name}`, `http://s.ppy.sh/a/${u.id}`)
+                .setAuthor(`osu! Standard Profile for ${u.name}`, `https://osu.ppy.sh/images/flags/${u.country}.png`)
                 .setThumbnail(`http://s.ppy.sh/a/${u.id}`)
                 .setColor('#2F3136')
-                .addField('› Bancho Rank', `${rank} (${u.country}${rankCountry})`, true)
+                .addField('› Global Rank', `${rank} (${u.country}${rankCountry})`, true)
                 .addField('› Level', level, true)
                 .addField('› PP', pp, true)
                 .addField('› Accuracy', accuracy, true)
