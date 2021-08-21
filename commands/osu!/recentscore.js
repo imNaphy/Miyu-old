@@ -9,65 +9,53 @@ const osuAPI = new osu.Api(config.osuAPI, {
 
 function osuMods(bit) {
     mods = [];
-    if (bit >= 16384 ) { //Perfect
+    if (bit >= 16384) { // Perfect
         bit -= 16416;
         mods.push('PF');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 4096) { // Spun Out
+        bit -= 4096;
+        mods.push('SO');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 1024) { // Flashlight
+        bit -= 1024;
+        mods.push('FL');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 512) { // Nightcore
+        bit -= 576;
+        mods.push('NC');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 256) { // Half Time
+        bit -= 256;
+        mods.push('HT');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 64) { // Double Time
+        bit -= 64;
+        mods.push('DT');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 32) { // Sudden Death
+        bit -= 32;
+        mods.push('SD');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 16) { // Hard Rock
+        bit -= 16;
+        mods.push('HR');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 8) { // Hidden
+        bit -= 8;
+        mods.push('HD');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 4) { // Touch Device
+        bit -= 4;
+        mods.push('TD');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 2) { // Easy
+        bit -= 2;
+        mods.push('EZ');
     }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
-    }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
-    }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
-    }
-    if (bit >= 16384 ) {
-        bit -= 16416;
-        mods.push('PF');
+    if (bit >= 1) { // No Fail
+        bit -= 1;
+        mods.push('NF');
     }
 }
 
