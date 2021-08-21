@@ -15,49 +15,49 @@ module.exports = {
         if (!args[0]) return message.channel.send('ERROR: You have to specify a username!');
         try {
             const user = args.join(' ');
-            await osuAPI.getUser({ u: user }).then(u => {
+            await osuAPI.getUser({ u: user }).then(player => {
                 //Ranking
                 let rank;
                 let rankCountry = '';
-                if (u.pp.raw === '0') {
+                if (player.pp.raw === '0') {
                     rank = '-';
                 }
                 else {
-                    rank = u.pp.rank;
+                    rank = player.pp.rank;
                     rank = '#' + rank.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    rankCountry = u.pp.countryRank;
+                    rankCountry = player.pp.countryRank;
                     rankCountry = '#' + rankCountry.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 }
                 //PP
-                let pp = u.pp.raw;
+                let pp = player.pp.raw;
                 pp = pp.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 //Ranked Score
-                let rankedScore = u.scores.ranked;
+                let rankedScore = player.scores.ranked;
                 rankedScore = rankedScore.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 //Total Score
-                let totalScore = u.scores.total;
+                let totalScore = player.scores.total;
                 totalScore = totalScore.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 //Level
                 let level;
-                if (u.level >= 100) level = u.level.slice(0, 3) + ` + ${u.level.slice(4, 6)}%`;
-                if (u.level < 10) level = u.level.slice(0, 1) + ` + ${u.level.slice(2, 4)}%`;
-                if (u.level >= 10 && u.level < 100) level = u.level.slice(0, 2) + ` + ${u.level.slice(3, 5)}%`;
+                if (player.level >= 100) level = player.level.slice(0, 3) + ` + ${player.level.slice(4, 6)}%`;
+                if (player.level < 10) level = player.level.slice(0, 1) + ` + ${player.level.slice(2, 4)}%`;
+                if (player.level >= 10 && player.level < 100) level = player.level.slice(0, 2) + ` + ${player.level.slice(3, 5)}%`;
                 //Accuracy
                 let accuracy;
-                if (u.accuracy === '100') accuracy = '100.00%';
-                else accuracy = u.accuracy.slice(0, 5) + '%';
+                if (player.accuracy === '100') accuracy = '100.00%';
+                else accuracy = player.accuracy.slice(0, 5) + '%';
                 //Time Played
-                let time = (u.secondsPlayed / 60 / 60).toString();
+                let time = (player.secondsPlayed / 60 / 60).toString();
                 time = time.split('.')[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 //Play Count
-                let playCount = u.counts.plays;
+                let playCount = player.counts.plays;
                 playCount = playCount.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
                 const embed = new Discord.MessageEmbed()
-                .setAuthor(`osu! Standard Profile for ${u.name}`, `https://osu.ppy.sh/images/flags/${u.country}.png`)
-                .setThumbnail(`http://s.ppy.sh/a/${u.id}`)
+                .setAuthor(`osu! Standard Profile for ${player.name}`, `https://osu.ppy.sh/images/flags/${player.country}.png`)
+                .setThumbnail(`http://s.ppy.sh/a/${player.id}`)
                 .setColor('#2F3136')
-                .addField('› Global Rank', `${rank} (${u.country}${rankCountry})`, true)
+                .addField('› Global Rank', `${rank} (${player.country}${rankCountry})`, true)
                 .addField('› Level', level, true)
                 .addField('› PP', pp, true)
                 .addField('› Accuracy', accuracy, true)
@@ -65,7 +65,7 @@ module.exports = {
                 .addField('› Time Played', `${time} hours`, true)
                 .addField('› Ranked Score', rankedScore, true)
                 .addField('› Total Score', totalScore, true)
-                .addField('› Ranks', `<:SSH:878549683931324456>\`${u.counts.SSH}\`<:SS:878549683746775061>\`${u.counts.SS}\`<:SH:878549683679678474>\`${u.counts.SH}\`<:S_:878549683671269376>\`${u.counts.S}\`<:A_:878549683759382560>\`${u.counts.A}\``, false)
+                .addField('› Ranks', `<:ranking_SSH:878549683931324456>\`${player.counts.SSH}\`<:ranking_SS:878549683746775061>\`${player.counts.SS}\`<:ranking_SH:878549683679678474>\`${player.counts.SH}\`<:ranking_S:878549683671269376>\`${player.counts.S}\`<:ranking_A:878549683759382560>\`${player.counts.A}\``, false)
                 .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL());
                 message.channel.send({embeds: [embed]});
             });

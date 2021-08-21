@@ -23,11 +23,10 @@ bot.once('ready', () => {
 });
 
 bot.on('message',  async message => {
-    const prefix = '/';
+    const prefix = 'm!';
     if (!message.content.startsWith(prefix) || message.author.bot) return;
     if (!message.member) message.member = await message.guild.fetchMember(message);
-
-    const args = message.content.slice(1).trim().split(/ +/);
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
     const cmd = args.shift().toLowerCase();
     if (cmd.length === 0) return;
     
