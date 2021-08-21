@@ -31,15 +31,13 @@ module.exports = {
                     let accuracy;
                     if (u.accuracy === '100') accuracy = '100.00%';
                     else accuracy = u.accuracy.slice(0, 5) + '%';
-                    var test = u.secondsPlayed / 60 / 60;
-                    //test = test.split('.');
-                    //const hours = (u.secondsPlayed / 60 / 60).split('.');
-                    //console.log(test[0]);
+                    var time = (u.secondsPlayed / 60 / 60).toString();
+                    time = time.split('.')[0];
                     const embed = new Discord.MessageEmbed()
                     .setAuthor(`osu! Standard Profile for ${u.name}`, `http://s.ppy.sh/a/${u.id}`)
                     .setThumbnail(`http://s.ppy.sh/a/${u.id}`)
                     .setColor('#363940')
-                    .setDescription(`**› Bancho Rank:** ${rank} (${u.country}${rankCountry})\n**› Level:** ${level}\n**› PP:** ${u.pp.raw} **› Acc:** ${accuracy}\n**› Playcount:** ${u.counts.plays} (${u.secondsPlayed / 60 / 60})`)
+                    .setDescription(`**› Bancho Rank:** ${rank} (${u.country}${rankCountry})\n**› Level:** ${level}\n**› PP:** ${u.pp.raw} **› Acc:** ${accuracy}\n**› Playcount:** ${u.counts.plays} (${time} hrs)`)
                     .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL());
                     message.channel.send({embeds: [embed]});
                 });
