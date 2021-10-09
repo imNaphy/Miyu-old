@@ -8,7 +8,11 @@ module.exports = {
         if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
         if (!message.member.voice.channel) return message.channel.send('ERROR: You have to be in a voice channel first!');
         if (!message.guild.me.voice.channel) return message.channel.send('ERROR: I am not in any voice channels currently!');
-        DiscordVoice.getVoiceConnection(message.member.voice.channel.guild.id).destroy();
+        try {
+            await DiscordVoice.getVoiceConnection(message.member.voice.channel.guild.id).destroy();
+        } catch (error) {
+            console.error(error);
+        }
         return;
     }
 };
