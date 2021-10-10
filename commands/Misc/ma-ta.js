@@ -5,6 +5,10 @@ module.exports = {
     aliases: ['mata'],
     run: async (bot, message, args) => {
         if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
-        return message.member.send(`ma-ta`);
+        try {
+            message.member.send(`ma-ta`);
+        } catch (error) {
+            return console.error(error);
+        }
     }
 };

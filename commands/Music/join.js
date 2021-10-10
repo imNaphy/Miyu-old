@@ -6,6 +6,8 @@ module.exports = {
     aliases: ['connect'],
     run: async (bot, message, args) => {
         if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
+        const permissions = message.member.voice.channel.permissionsFor(message.client.user);
+        if (!permissions.has('CONNECT')) return message.channel.send('ERROR: I can\'t conenct to the voice channel!');
         if (!message.member.voice.channel) return message.channel.send('ERROR: You have to be in a voice channel first!');
         if (message.guild.me.voice.channel) return message.channel.send('ERROR: I am already in a voice channel!');
         try {
