@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: 'clear',
-    aliases: ['purge'],
+    aliases: ['purge', 'delete'],
     run: async (bot, message, args) => {
         if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
         if (!message.member.permissions.has('MANAGE_MESSAGES')) return message.channel.send('ERROR: No permission!');
