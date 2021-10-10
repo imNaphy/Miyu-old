@@ -19,6 +19,6 @@ module.exports = {
         const searchString = arguments.slice(1).join(' ');
         const url = arguments[1] ? arguments[1].replace(/<(.+)>/g, '$1') : '';
         //const serverQueue = queue.get(message.guild.id);
-        console.log(`${searchString} \n ${url}`);
+        console.log(`${searchString} \n${url}`);
     }
 };

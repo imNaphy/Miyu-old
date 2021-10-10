@@ -11,7 +11,9 @@ module.exports = {
         try {
             await DiscordVoice.getVoiceConnection(message.member.voice.channel.guild.id).destroy();
         } catch (error) {
-            console.error(error);
+            await DiscordVoice.joinVoiceChannel({ channelId: message.member.voice.channel.id, guildId: message.guild.id, adapterCreator: message.guild.voiceAdapterCreator });
+            await DiscordVoice.getVoiceConnection(message.member.voice.channel.guild.id).destroy();
+            return;
         }
         return;
     }
