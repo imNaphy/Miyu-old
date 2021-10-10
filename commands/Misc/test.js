@@ -21,5 +21,7 @@ module.exports = {
         //if (owner.nickname === null) message.channel.send('test1');
         //else message.channel.send('test2');
         //for (let i = 1; i <= 100; ++i) message.channel.send('test');
+        //const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
+        //if (user) user.send('test');
     }
 };

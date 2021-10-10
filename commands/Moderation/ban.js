@@ -24,8 +24,12 @@ module.exports = {
 
         bUser.ban({reason: bReason}).catch(error => {
             message.channel.send('Something went wrong!').then(message => {
-                setTimeout(function() {
-                    message.delete();
+                setTimeout(async function() {
+                    try {
+                        await message.delete();
+                    } catch (error) {
+                        return;
+                    }
                 }, 5000);
             });
             console.log(error);
