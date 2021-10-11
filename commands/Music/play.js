@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const DiscordVoice = require('@discordjs/voice');
 const ytdl = require('ytdl-core');
+const ytSearch = require('yt-search');
+const queue = new Map();
 const mFunc = require('../../utils/mFunc.js');
 
 module.exports = {
@@ -8,10 +10,12 @@ module.exports = {
     aliases: ['p'],
     run: async (bot, message, args) => {
         if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
-        const permissions = message.member.voice.channel.permissionsFor(message.client.user);
+        const voiceChannel = message.member.voice.channel;
+        const permissions = voiceChannel.permissionsFor(message.client.user);
         if (!permissions.has('CONNECT')) return message.channel.send('ERROR: I can\'t conenct to the voice channel!');
         if (!permissions.has('SPEAK')) return message.channel.send('ERROR: I can\'t talk in this voice channel!');
-        if (!message.member.voice.channel) return message.channel.send('ERROR: You have to be in a voice channel first!');
+        if (!voiceChannel) return message.channel.send('ERROR: You have to be in a voice channel first!');
+        if (!args[0]) return message.channel.send('ERROR: No input provided!');
         if (message.guild.me.voice.channel !== message.member.voice.channel && message.guild.me.voice.channel && message.member.voice.channel) return message.channel.send('ERROR: I am in a different voice channel!');
         if (!message.guild.me.voice.channel) {
             try {

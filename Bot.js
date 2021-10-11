@@ -19,7 +19,7 @@ fs.readdirSync(`./commands/`).forEach(dir => {
 
 bot.once('ready', () => {
     console.log('Ready!');
-    bot.user.setActivity('over my lovely users <3 | /help', { type: 'WATCHING' });
+    bot.user.setActivity('over my lovely users <3 | m!help', { type: 'WATCHING' });
 });
 
 bot.on('message',  async message => {

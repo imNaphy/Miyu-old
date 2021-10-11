@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const DiscordVoice = require('@discordjs/voice');
 const fs = require('fs');
 const ytdl = require('ytdl-core');
-const YouTube = require('simple-youtube-api');
 const queue = new Map();
 
 /*
