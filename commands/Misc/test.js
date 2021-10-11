@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+//const test = require('../../utils/mFunc.js');
 
 module.exports = {
     name: 'test',
@@ -23,5 +24,6 @@ module.exports = {
         //for (let i = 1; i <= 100; ++i) message.channel.send('test');
         //const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         //if (user) user.send('test');
+        //test.handleVideo(message, 'test');
     }
 };

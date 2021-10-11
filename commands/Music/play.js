@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const DiscordVoice = require('@discordjs/voice');
 const ytdl = require('ytdl-core');
-const YouTube = require('simple-youtube-api');
+const mFunc = require('../../utils/mFunc.js');
 
 module.exports = {
     name: 'play',
@@ -20,23 +20,25 @@ module.exports = {
                 console.error(error);
             }
         }
+
+        /*
         const arguments = message.content.split(' ');
         const searchString = arguments.slice(1).join(' ');
         const url = arguments[1] ? arguments[1].replace(/<(.+)>/g, '$1') : '';
-        //const serverQueue = queue.get(message.guild.id);
+        const serverQueue = queue.get(message.guild.id);
         console.log(`${searchString} \n${url}`);
         if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
             const playlist = await YouTube.getPlaylist(url);
             const videos = await playlist.getVideos();
             for (const video of Object.values(videos)) {
                 const video2 = await YouTube.getVideoById(video.id);
-                //await handleVideo(video2, message, voiceChannel,)
+                await mFunc.handleVideo(video2, message, voiceChannel, true)
             }
             return message.channel.send(`The **${playlist.title}** playlist has been added to the queue!`);
         } else if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/watch(.*)$/)) {
             try {
                 const video = await YouTube.getVideo(url);
-                //return handleVideo(video, message, voiceChannel);
+                return mFunc.handleVideo(video, message, voiceChannel);
             } catch (error) {
                 return message.channel.send('I couldn\'t find any video based on the URL provided!');
             }
@@ -62,5 +64,6 @@ module.exports = {
                 return message.channel.send('I couldn\'t obtain any search results.');
             }
         }
+        */
     }
 };
