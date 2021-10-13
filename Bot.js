@@ -22,9 +22,9 @@ bot.once('ready', () => {
     bot.user.setActivity('over my lovely users <3 | m!help', { type: 'WATCHING' });
 });
 
-bot.on('message',  async message => {
+bot.on('message', async message => {
     const prefix = 'm!';
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild) return;
     if (!message.member) message.member = await message.guild.fetchMember(message);
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const cmd = args.shift().toLowerCase();
@@ -40,6 +40,14 @@ bot.on('message',  async message => {
             return console.log(error);
         }
     }
+});
+
+bot.on('message', async message => {
+    const prefix = 'm!';
+    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild) return;
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const cmd = args.shift().toLowerCase();
+    if (cmd.length === 0) return;
 });
 
 bot.login(config.token);
