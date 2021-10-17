@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
+const { Player } = require('discord-player');
 const fs = require('fs');
 
 const bot = new Discord.Client({ intents: 32767 });
@@ -42,12 +43,26 @@ bot.on('message', async message => {
     }
 });
 
+const player = new Player(bot, {
+    leaveOnEnd: true,
+    leaveOnStop: true,
+    leaveOnEmpty: true,
+    leaveOnEmptyCooldown: 5000,
+    autoSelfDeaf: true,
+    initialVolume: 80,
+    bufferingTimeout: 3000,
+});
+
+module.exports = {bot, player}
+require('./events')(bot);
 bot.on('message', async message => {
-    const prefix = 'm!';
+    const prefix = 'm/';
     if (!message.content.startsWith(prefix) || message.author.bot || !message.guild) return;
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const cmd = args.shift().toLowerCase();
-    if (cmd.length === 0) return;
+
+    require('./cmd')(bot, message, args, cmd);
+    //if (cmd.length === 0) return;
 });
 
 bot.login(config.token);
