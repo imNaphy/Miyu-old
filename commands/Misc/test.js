@@ -25,5 +25,6 @@ module.exports = {
         //const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         //if (user) user.send('test');
         //test.handleVideo(message, 'test');
+        //require('./test')(bot, message, args, cmd)
     }
 };
