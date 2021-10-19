@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
+const DiscordVoice = require('@discordjs/voice');
+const ytdl = require('ytdl-core');
 const fs = require('fs');
 
 const bot = new Discord.Client({ intents: 32767 });
@@ -48,7 +50,33 @@ bot.on('message', async message => {
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const cmd = args.shift().toLowerCase();
 
-    //if (cmd.length === 0) return;
+    if(cmd === 'play') {
+        joinChannel();
+
+        function joinChannel() {
+            const voiceConnection = DiscordVoice.joinVoiceChannel({
+                channelId: message.member.voice.channel.id,
+                guildId: message.guild.id,
+                adapterCreator: message.guild.voiceAdapterCreator
+            });
+            const resource = DiscordVoice.createAudioResource(ytdl('https://www.youtube.com/watch?v=Ex12brIkjIE'), {
+                inlineVolume: true
+            });
+            resource.volume.setVolume(0.2);
+            const player = DiscordVoice.createAudioPlayer();
+            voiceConnection.subscribe(player);
+            player.play(resource);
+            player.on('idle', () => {
+                try {
+                    player.stop();
+                } catch (error) { }
+                try {
+                    voiceConnection.destroy();
+                } catch (error) { }
+                joinChannel();
+            })
+        }
+    }
 });
 
 bot.login(config.token);
