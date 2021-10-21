@@ -44,39 +44,4 @@ bot.on('message', async message => {
     }
 });
 
-bot.on('message', async message => {
-    const prefix = 'm/';
-    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild) return;
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const cmd = args.shift().toLowerCase();
-
-    if(cmd === 'play') {
-        joinChannel();
-
-        function joinChannel() {
-            const voiceConnection = DiscordVoice.joinVoiceChannel({
-                channelId: message.member.voice.channel.id,
-                guildId: message.guild.id,
-                adapterCreator: message.guild.voiceAdapterCreator
-            });
-            const resource = DiscordVoice.createAudioResource(ytdl('https://www.youtube.com/watch?v=Ex12brIkjIE'), {
-                inlineVolume: true
-            });
-            resource.volume.setVolume(0.2);
-            const player = DiscordVoice.createAudioPlayer();
-            voiceConnection.subscribe(player);
-            player.play(resource);
-            player.on('idle', () => {
-                try {
-                    player.stop();
-                } catch (error) { }
-                try {
-                    voiceConnection.destroy();
-                } catch (error) { }
-                joinChannel();
-            })
-        }
-    }
-});
-
 bot.login(config.token);

@@ -25,6 +25,38 @@ module.exports = {
             }
         }
 
+        const voiceConnection = DiscordVoice.joinVoiceChannel({
+            channelId: message.member.voice.channel.id,
+            guildId: message.guild.id,
+            adapterCreator: message.guild.voiceAdapterCreator
+        });
+        const resource = DiscordVoice.createAudioResource(ytdl(args[0], { filter: 'audioonly', quality: 'highestaudio'}), {
+            inlineVolume: true
+        });
+        resource.volume.setVolume(0.2);
+        try {
+            const player = DiscordVoice.createAudioPlayer();
+            voiceConnection.subscribe(player);
+            player.play(resource);
+        } catch (error) {
+            return console.error(error);
+        }
+        
+        /*
+        player.on('idle', () => {
+            try {
+                player.stop();
+            } catch (error) {
+                return;
+            }
+            try {
+                voiceConnection.destroy();
+            } catch (error) {
+                return;
+            }
+            joinChannel();
+        })
+        */
         /*
         const arguments = message.content.split(' ');
         const searchString = arguments.slice(1).join(' ');
