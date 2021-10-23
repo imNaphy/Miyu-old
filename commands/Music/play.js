@@ -30,33 +30,31 @@ module.exports = {
             guildId: message.guild.id,
             adapterCreator: message.guild.voiceAdapterCreator
         });
-        const resource = DiscordVoice.createAudioResource(ytdl(args[0], { filter: 'audioonly', quality: 'highestaudio'}), {
-            inlineVolume: true
-        });
-        resource.volume.setVolume(0.2);
         try {
+            const resource = DiscordVoice.createAudioResource(ytdl(args[0], { filter: 'audioonly'}), { //, quality: 'highestaudio'
+                inlineVolume: true
+            });
+            resource.volume.setVolume(0.2);
             const player = DiscordVoice.createAudioPlayer();
             voiceConnection.subscribe(player);
             player.play(resource);
+            player.on('idle', () => {
+                try {
+                    player.stop();
+                } catch (error) {
+                    return;
+                }
+                try {
+                    voiceConnection.destroy();
+                } catch (error) {
+                    return;
+                }
+                //joinChannel();
+            })
         } catch (error) {
             return console.error(error);
         }
-        
-        /*
-        player.on('idle', () => {
-            try {
-                player.stop();
-            } catch (error) {
-                return;
-            }
-            try {
-                voiceConnection.destroy();
-            } catch (error) {
-                return;
-            }
-            joinChannel();
-        })
-        */
+
         /*
         const arguments = message.content.split(' ');
         const searchString = arguments.slice(1).join(' ');
