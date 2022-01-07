@@ -24,12 +24,12 @@ module.exports = {
                 console.error(error);
             }
         }
-
+        /*
         const voiceConnection = DiscordVoice.joinVoiceChannel({
             channelId: message.member.voice.channel.id,
             guildId: message.guild.id,
             adapterCreator: message.guild.voiceAdapterCreator
-        });
+        });*/
         try {
             const resource = DiscordVoice.createAudioResource(ytdl(args[0], { filter: 'audioonly'}), { //, quality: 'highestaudio'
                 inlineVolume: true
@@ -52,7 +52,7 @@ module.exports = {
                 //joinChannel();
             })
         } catch (error) {
-            return console.error(error);
+            return console.log(error);
         }
 
         /*

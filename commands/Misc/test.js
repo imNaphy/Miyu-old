@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 //const test = require('../../utils/mFunc.js');
+const ytdl = require('ytdl-core');
+const fs = require('fs');
 
 module.exports = {
     name: 'test',
@@ -17,7 +19,7 @@ module.exports = {
         .addField('Field2', 'text2 din field, ambele inline = pe aceeasi linie', true)
         .setURL('https://naphy.cf')
         .setFooter(`si footer avem, cum sa n-avem ${message.author.tag}`, message.author.displayAvatarURL());
-        message.channel.send({embeds: [embed]});
+        ///message.channel.send({embeds: [embed]});
         //await message.guild.fetchOwner().then(guildMember => owner = guildMember);
         //if (owner.nickname === null) message.channel.send('test1');
         //else message.channel.send('test2');
@@ -26,5 +28,9 @@ module.exports = {
         //if (user) user.send('test');
         //test.handleVideo(message, 'test');
         //require('./test')(bot, message, args, cmd)
+        ytdl("https://www.youtube.com/watch?v=x8VYWazR5mE", {
+            filter: "audioonly",
+            fmt: "mp3"
+        }).pipe(fs.createWriteStream("yorunikakeru.mp3"));
     }
 };

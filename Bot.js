@@ -1,7 +1,5 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
-const DiscordVoice = require('@discordjs/voice');
-const ytdl = require('ytdl-core');
 const fs = require('fs');
 
 const bot = new Discord.Client({ intents: 32767 });
