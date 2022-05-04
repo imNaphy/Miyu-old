@@ -8,9 +8,7 @@ module.exports = {
         if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
         
         try {
-            //let {body} = await superagent.get(`https://aws.random.cat/meow`);
-            let {body} = await superagent.get(`http://random.cat`);
-            console.log(body);
+            let {body} = await superagent.get(`http://aws.random.cat/meow`);
             if (body.file) {
                 const embed = new Discord.MessageEmbed()
                 .setAuthor('🐱 Meow')

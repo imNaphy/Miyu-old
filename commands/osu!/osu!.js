@@ -39,9 +39,9 @@ module.exports = {
                 totalScore = totalScore.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 //Level
                 let level;
-                if (player.level >= 100) level = player.level.slice(0, 3) + ` + ${player.level.slice(4, 6)}%`;
-                if (player.level < 10) level = player.level.slice(0, 1) + ` + ${player.level.slice(2, 4)}%`;
-                if (player.level >= 10 && player.level < 100) level = player.level.slice(0, 2) + ` + ${player.level.slice(3, 5)}%`;
+                if (player.level >= 100) level = player.level.slice(0, 3) + ` (${player.level.slice(4, 6)}%)`;
+                if (player.level < 10) level = player.level.slice(0, 1) + ` (${player.level.slice(2, 4)}%)`;
+                if (player.level >= 10 && player.level < 100) level = player.level.slice(0, 2) + ` (${player.level.slice(3, 5)}%)`;
                 //Accuracy
                 let accuracy;
                 if (player.accuracy === '100') accuracy = '100.00%';
