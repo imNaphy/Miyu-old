@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 //const test = require('../../utils/mFunc.js');
 const ytdl = require('ytdl-core');
+const { request, fetch } = require('node-fetch');
 const fs = require('fs');
 
 module.exports = {
@@ -8,6 +9,7 @@ module.exports = {
     run: async (bot, message, args) => {
         if (!message.guild.me.permissions.has('SEND_MESSAGES')) return;
         const member = message.mentions.members.first() || message.member;
+        /*
         const embed = new Discord.MessageEmbed()
         .setAuthor('Embed mare manca-l-ar mama are si URL textul asta', bot.user.displayAvatarURL(), 'https://naphy.cf')
         .setTitle('are si titlu embed-ul asta, URL-ul e de la .setURL')
@@ -32,5 +34,12 @@ module.exports = {
             filter: "audioonly",
             fmt: "mp3"
         }).pipe(fs.createWriteStream("yorunikakeru.mp3"));
+        */
+        const request = new Request('../../test.json');
+        fetch(request)
+            .then(response => response.json())
+            .then(data => console.log)
+            .catch(console.error);
+
     }
 };

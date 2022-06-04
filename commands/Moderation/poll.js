@@ -15,7 +15,7 @@ module.exports = {
         .setDescription('Please react to the message.')
         .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL());
         message.delete().catch();
-        message.channel.send({embed: embed}).then(embedMessage => {
+        message.channel.send({embeds: [embed]}).then(embedMessage => {
             embedMessage.react('👍');
             embedMessage.react('👎');
         });
