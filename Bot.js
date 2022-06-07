@@ -23,21 +23,40 @@ bot.once('ready', () => {
 });
 
 bot.on('message', async message => {
-    const prefix = 'm!';
-    if (!message.content.startsWith(prefix) || message.author.bot || !message.guild) return;
-    if (!message.member) message.member = await message.guild.fetchMember(message);
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const cmd = args.shift().toLowerCase();
-    if (cmd.length === 0) return;
-    
-    let command = bot.commands.get(cmd);
-    if (!command) command = bot.commands.get(bot.aliases.get(cmd));
+    if (message.author.bot || !message.guild) return;
+    let prefix = JSON.parse(fs.readFileSync("prefixes.json", "utf8"));
+    if (prefix[message.guild.id]) {
+        if (!message.member) message.member = await message.guild.fetchMember(message);
+        const args = message.content.slice(prefix[message.guild.id].length).trim().split(/ +/);
+        const cmd = args.shift().toLowerCase();
+        if (cmd.length === 0) return;
+        
+        let command = bot.commands.get(cmd);
+        if (!command) command = bot.commands.get(bot.aliases.get(cmd));
 
-    if (command) {
-        try {
-            command.run(bot, message, args);
-        } catch (error) {
-            return console.log(error);
+        if (command) {
+            try {
+                command.run(bot, message, args);
+            } catch (error) {
+                return console.log(error);
+            }
+        }
+    }
+    if (message.content.startsWith('m!')) {
+        const prefix = 'm!';
+        const args = message.content.slice(prefix.length).trim().split(/ +/);
+        const cmd = args.shift().toLowerCase();
+        if (cmd.length === 0) return;
+        
+        let command = bot.commands.get(cmd);
+        if (!command) command = bot.commands.get(bot.aliases.get(cmd));
+
+        if (command) {
+            try {
+                command.run(bot, message, args);
+            } catch (error) {
+                return console.log(error);
+            }
         }
     }
 });

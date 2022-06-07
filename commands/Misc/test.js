@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 //const test = require('../../utils/mFunc.js');
 const ytdl = require('ytdl-core');
-const { request, fetch } = require('node-fetch');
 const fs = require('fs');
 
 module.exports = {
@@ -35,11 +34,9 @@ module.exports = {
             fmt: "mp3"
         }).pipe(fs.createWriteStream("yorunikakeru.mp3"));
         */
-        const request = new Request('../../test.json');
-        fetch(request)
-            .then(response => response.json())
-            .then(data => console.log)
-            .catch(console.error);
-
+        fs.readFile('test.json', 'utf8', (err, data) => {
+            if (err) console.error(err);
+            console.log(data);
+        })
     }
 };
